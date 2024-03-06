@@ -30,4 +30,19 @@ public class RainfallMeasurementService
 
         return new Root();
     }
+
+    public async Task<Root> GetRainfallMeasurementStationsByLabelAsync(string labelValue)
+    {
+        var response = await _httpClient.GetAsync($"id/stations?label={labelValue}");
+
+        if (response.IsSuccessStatusCode)
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            var root = JsonConvert.DeserializeObject<Root>(content);
+
+            return root!;
+        }
+
+        return new Root();
+    }
 }

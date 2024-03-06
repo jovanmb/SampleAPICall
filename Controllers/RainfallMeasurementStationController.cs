@@ -22,5 +22,12 @@ namespace SampleAPICall.Controllers
             var data = await _rainfallMeasurementService.GetRainfallMeasurementStationsAsync();
             return data;
         }
+
+        [HttpGet("ByLabel")]
+        public async Task<ActionResult<Root>> GetRainfallMeasurementStationByLabelData(string labelValue)
+        {
+            var data = await _rainfallMeasurementService.GetRainfallMeasurementStationsByLabelAsync(labelValue);
+            return data;
+        }
     }
 }
